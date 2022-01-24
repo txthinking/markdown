@@ -8,7 +8,7 @@
 ### Install via [nami](https://github.com/txthinking/nami)
 
 ```
-$ nami install markdown
+nami install markdown
 ```
 
 ### Usage
