@@ -14,9 +14,6 @@ nami install markdown
 ### Usage
 
 ```
-markdown xxx.md
-```
-```
 markdown xxx.md xxx.html
 ```
 
