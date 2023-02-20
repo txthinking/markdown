@@ -1088,6 +1088,7 @@ func main() {
 	b, err := os.ReadFile(os.Args[1])
 	if err != nil {
 		log.Println(err)
+		os.Exit(1)
 		return
 	}
 
@@ -1103,10 +1104,12 @@ func main() {
 	s, err = bytes.NewBuffer(b).ReadString('\n')
 	if err != nil {
 		log.Println(err)
+		os.Exit(1)
 		return
 	}
 	if !strings.HasPrefix(s, "# ") {
 		log.Println("First line must starts with # ")
+		os.Exit(1)
 		return
 	}
 	title := strings.TrimSpace(strings.Replace(s, "# ", "", 1))
@@ -1114,6 +1117,7 @@ func main() {
 		out, err := exec.Command("sh", "-c", fmt.Sprintf("mdtoc1d %s", os.Args[1])).Output()
 		if err != nil {
 			log.Println(err)
+			os.Exit(1)
 			return
 		}
 		b = bytes.Replace(b, []byte("<!--TOC-->"), out, 1)
@@ -1126,6 +1130,7 @@ func main() {
 	}
 	if err := os.WriteFile(name, b, 0644); err != nil {
 		log.Println(err)
+		os.Exit(1)
 		return
 	}
 }
