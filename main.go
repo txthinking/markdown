@@ -1120,7 +1120,7 @@ func main() {
 	}
 	b = bytes.Replace([]byte(html), []byte("REPLACE"), github_flavored_markdown.Markdown(b), 1)
 	b = bytes.Replace(b, []byte("TITLE"), []byte(title), 1)
-	name := strings.TrimRight(os.Args[1], ".md") + ".article"
+	name := strings.TrimRight(os.Args[1], ".md") + ".html"
 	if len(os.Args) >= 3 {
 		name = os.Args[2]
 	}
