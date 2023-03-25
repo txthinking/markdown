@@ -1,9 +1,5 @@
 # markdown
 
-[🗣 News](https://t.me/txthinking_news)
-[🩸 Youtube](https://www.youtube.com/txthinking)
-[❤️ Sponsor](https://github.com/sponsors/txthinking)
-
 ### Install via [nami](https://github.com/txthinking/nami)
 
 ```
