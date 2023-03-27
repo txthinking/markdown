@@ -1,8 +1,11 @@
 module github.com/txthinking/markdown
 
-go 1.17
+go 1.19
 
-require github.com/shurcooL/github_flavored_markdown v0.0.0-20210228213109-c3a9aa474629
+require (
+	github.com/ekalinin/github-markdown-toc.go v1.2.1
+	github.com/shurcooL/github_flavored_markdown v0.0.0-20210228213109-c3a9aa474629
+)
 
 require (
 	github.com/aymerick/douceur v0.2.0 // indirect
@@ -20,4 +23,5 @@ require (
 	github.com/sourcegraph/annotate v0.0.0-20160123013949-f4cad6c6324d // indirect
 	github.com/sourcegraph/syntaxhighlight v0.0.0-20170531221838-bd320f5d308e // indirect
 	golang.org/x/net v0.0.0-20220121210141-e204ce36a2ba // indirect
+	gopkg.in/yaml.v3 v3.0.1 // indirect
 )
