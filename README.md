@@ -20,6 +20,12 @@ markdown xxx.md xxx.html
 <!--TOC-->
 ```
 
+#### Sidebar
+
+```
+<!--SIDEBAR-->
+```
+
 #### Google Analytics
 
 ```
