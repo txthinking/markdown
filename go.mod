@@ -3,7 +3,7 @@ module github.com/txthinking/markdown
 go 1.19
 
 require (
-	github.com/ekalinin/github-markdown-toc.go v1.2.1
+	github.com/ekalinin/github-markdown-toc.go v1.3.1
 	github.com/shurcooL/github_flavored_markdown v0.0.0-20210228213109-c3a9aa474629
 )
 

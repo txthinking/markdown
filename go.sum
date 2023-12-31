@@ -11,6 +11,8 @@ github.com/davecgh/go-spew v1.1.1 h1:vj9j/u1bqnvCEfJOwUhtlOARqs3+rkHYY13jYWTU97c
 github.com/davecgh/go-spew v1.1.1/go.mod h1:J7Y8YcW2NihsgmVo/mv3lAwl/skON4iLHjSsI+c5H38=
 github.com/ekalinin/github-markdown-toc.go v1.2.1 h1:6jRFt5qg61XfXZbP3SDaeTX+1OC1EgbHvRceYDmPAUE=
 github.com/ekalinin/github-markdown-toc.go v1.2.1/go.mod h1:V5aiwoSLm1+er91D4l0AXn8vr4FX07Iu+zgDMFj3FeU=
+github.com/ekalinin/github-markdown-toc.go v1.3.1 h1:QRFxDXFksfjALIBySYFUB7Z8bNKU4Nox695f0OJRt4A=
+github.com/ekalinin/github-markdown-toc.go v1.3.1/go.mod h1:V5aiwoSLm1+er91D4l0AXn8vr4FX07Iu+zgDMFj3FeU=
 github.com/gorilla/css v1.0.0 h1:BQqNyPTi50JCFMTw/b67hByjMVXZRwGha6wxVGkeihY=
 github.com/gorilla/css v1.0.0/go.mod h1:Dn721qIggHpt4+EFCcTLTU/vk5ySda2ReITrtgBl60c=
 github.com/kr/pretty v0.1.0/go.mod h1:dAy3ld7l9f0ibDNOQOHHMYYIIbhfbHSm3C4ZsoJORNo=

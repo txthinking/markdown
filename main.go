@@ -2,6 +2,7 @@ package main
 
 import (
 	"bytes"
+	"fmt"
 	"log"
 	"os"
 	"regexp"
@@ -13,6 +14,11 @@ import (
 )
 
 func main() {
+	if len(os.Args) == 1 {
+		fmt.Println("$ markdown xxx.md xxx.html")
+		os.Exit(1)
+		return
+	}
 	b, err := os.ReadFile(os.Args[1])
 	if err != nil {
 		log.Println(err)
