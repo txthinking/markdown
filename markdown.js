@@ -1,19 +1,69 @@
-<!DOCTYPE html>
-<html>
+#!/usr/bin/env jb
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>{{ .title }}</title>
-    {{ if .ga }}
-    <script async src="https://www.googletagmanager.com/gtag/js?id={{ .ga }}"></script>
+import { marked } from 'marked';
+import { gfmHeadingId } from "marked-gfm-heading-id";
+marked.use(gfmHeadingId());
+
+if (process.argv.length < 3) {
+    echo('$ markdown xxx.md xxx.html')
+    exit(1)
+}
+
+var s = read_file(process.argv[2])
+if (!s.split("\n")[0].startsWith("# ")) {
+    echo("First line must starts with # ")
+    exit(1)
+}
+var title = s.split("\n")[0].replace("# ", "").trim()
+var md = s.replace("# " + title, "")
+var toc = (md.indexOf("<!--TOC-->") != -1) ? require('markdown-toc')(md).content : ""
+var sidebar = (md.indexOf("<!--SIDEBAR-->") != -1) ? require('markdown-toc')(md).content : ""
+var ga = ""
+var g = md.match(/<!--(UA-|G-).*-->/)
+if (g) {
+    g = g[0].replace("<!--", "").replace("-->", "")
+    ga = `
+    <script async src="https://www.googletagmanager.com/gtag/js?id=${g}"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
         function gtag() {dataLayer.push(arguments);}
         gtag('js', new Date());
-        gtag('config', '{{ .ga }}');
+        gtag('config', '${g}');
     </script>
-    {{ end }}
+`
+}
+if (sidebar) {
+    var body = `
+    <div class="sidebar">
+        ${marked.parse(sidebar, { gfm: true, breaks: true })}
+    </div>
+    <div class="content">
+        <div class="markdown-body">
+            ${marked.parse('# ' + title, { gfm: true, breaks: true })}
+            <div class="sidebarmob">
+                ${marked.parse(sidebar, { gfm: true, breaks: true })}
+            </div>
+            ${marked.parse(md, { gfm: true, breaks: true })}
+        </div>
+    </div>
+`
+} else {
+    var body = `
+    <div class="markdown-body">
+        ${marked.parse('# ' + title, { gfm: true, breaks: true })}
+        ${marked.parse(toc, { gfm: true, breaks: true })}
+        ${marked.parse(md, { gfm: true, breaks: true })}
+    </div>
+`
+}
+
+var html = `<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+<title>${title}</title>
+    ${ga}
     <style>
         @media (prefers-color-scheme: dark) {
             .markdown-body {
@@ -1152,26 +1202,13 @@
 </head>
 
 <body style="margin:0">
-    {{ if .sidebarhtml }}
-    <div class="sidebar">
-        {{ .sidebarhtml }}
-    </div>
-    <div class="content">
-        <div class="markdown-body">
-            {{ .titlehtml }}
-            <div class="sidebarmob">
-                {{ .sidebarhtml }}
-            </div>
-            {{ .bodyhtml }}
-        </div>
-    </div>
-    {{else}}
-    <div class="markdown-body">
-        {{ .titlehtml }}
-        {{ .tochtml }}
-        {{ .bodyhtml }}
-    </div>
-    {{ end }}
+${body}
 </body>
 
-</html>
+</html>`
+
+if (process.argv.length < 4) {
+    echo(html)
+} else {
+    write_file(process.argv[3], html)
+}
