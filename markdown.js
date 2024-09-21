@@ -1,18 +1,19 @@
-#!/usr/bin/env jb
+#!/usr/bin/env bun
 
+import * as fs from 'node:fs/promises'
 import { marked } from 'marked';
 import { gfmHeadingId } from "marked-gfm-heading-id";
 marked.use(gfmHeadingId());
 
 if (process.argv.length < 3) {
-    echo('$ markdown xxx.md xxx.html')
-    exit(1)
+    console.log('$ markdown xxx.md xxx.html')
+    process.exit(1)
 }
 
-var s = read_file(process.argv[2])
+var s = await fs.readFile(process.argv[2], { encoding: 'utf8' })
 if (!s.split("\n")[0].startsWith("# ")) {
-    echo("First line must starts with # ")
-    exit(1)
+    console.log("First line must starts with # ")
+    process.exit(1)
 }
 var title = s.split("\n")[0].replace("# ", "").trim()
 var md = s.replace("# " + title, "")
@@ -1208,7 +1209,7 @@ ${body}
 </html>`
 
 if (process.argv.length < 4) {
-    echo(html)
+    console.log(html)
 } else {
-    write_file(process.argv[3], html)
+    await fs.writeFile(process.argv[3], html)
 }
