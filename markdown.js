@@ -168,7 +168,7 @@ var html = `<!DOCTYPE html>
             margin: 0;
             color: var(--color-fg-default);
             background-color: var(--color-canvas-default);
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "PingFang SC";
             font-size: 16px;
             line-height: 1.5;
             word-wrap: break-word;
